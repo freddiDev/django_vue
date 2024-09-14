@@ -1,12 +1,12 @@
-from django.urls import path
-from django.conf import settings
-from django.conf.urls.static import static
-from . import views
+from django.urls import path, include
+from rest_framework import routers
+from .views import BookViewSet
 # from .views import Index
 
-urlpatterns = [
-    path('', views.index),
-    # path('data/', Index.as_view()),
+router = routers.DefaultRouter()
+router.register('books', BookViewSet)
 
+urlpatterns = [
+    path('', include(router.urls)),
 ]
 
